@@ -1,4 +1,4 @@
-const mognoose = require("mongoose")
+const mongoose = require("mongoose")
 const User = require("../models/userModel");
 
 const getAllUsers = async (req, res) => {
@@ -8,7 +8,8 @@ const getAllUsers = async (req, res) => {
 
 const getUser = async (req, res) => {
     const { id } = req.params;
-    if (!mongoose.Types.ObjectID.isValid(id)) {
+    console.log(id)
+    if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ error: "Request Failed (Invalid ID)" })
     }
     const user = await User.findById(id);
@@ -43,7 +44,7 @@ const createUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     const { id } = req.params;
-    if (!mongoose.Types.ObjectID.isValid(id)) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ error: "Request Failed (Invalid ID)" })
     }
     const user = await User.findOneAndDelete({ _id: id });
