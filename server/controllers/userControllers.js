@@ -25,12 +25,16 @@ const createUser = async (req, res) => {
         perms
     } = req.body;
     try {
-        const user = await User.create({
+        const existingUser = await User.find({user: user})
+        if (existingUser) {
+            res.status(400).json({ error: "User already exists" })
+        }
+        const newUser = await User.create({
             user,
             pass,
             perms
         });
-        res.status(200).json(user);
+        res.status(201).json(newUser);
     }
     catch (error) {
         res.status(400).json(error);
@@ -49,9 +53,33 @@ const deleteUser = async (req, res) => {
     res.status(200).json(user);
 };
 
+const loginUser = async (req, res) => {
+    const {
+        user,
+        pass
+    } = req.body;
+    try {
+        const userItem = await User.findOne({user: user})
+        if (userItem) {
+            const result = userItem.pass === pass;
+            if (result) {
+                res.status(204);
+            } else {
+                res.status(403).json({ error: "Incorrect Password" });
+            }    
+        } else {
+            res.status(404).json({ error: "User doesn't exist" });
+        }
+    }
+    catch (error) {
+        res.status(400).json(error);
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUser,
     createUser,
     deleteUser,
+    loginUser,
 };
