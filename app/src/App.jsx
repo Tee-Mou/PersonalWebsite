@@ -58,6 +58,7 @@ const App = () => {
   return (
     <div className="content">
       <Greeting/>
+      <LoginForm/>
       <p>Check out what I've been doing:</p>
       <div className="links_row1">
         <PersonalLink 
@@ -66,7 +67,6 @@ const App = () => {
         id="li"/>
       </div>
       
-      <LoginForm/>
     </div>
   );
 };

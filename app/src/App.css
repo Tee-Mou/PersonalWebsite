@@ -3,10 +3,16 @@
   src: url(fonts/Uni\ Sans\ Thin.otf);
 }
 
+@font-face {
+  font-family: jost;
+  src: url(fonts/Jost-Regular.ttf);
+}
+
+
 body {
   margin: 0;
   color: #E8E5DA;
-  font-family: uniSans;
+  font-family: jost;
   background-color: #000;
 }
 
@@ -66,7 +72,7 @@ input:focus::placeholder {
   
   margin-top: 15px;
   
-  font-family: uniSans;
+  font-family: jost;
   font-size: 18px;
   font-weight: 900;
   text-align: center;
@@ -83,7 +89,7 @@ input:focus::placeholder {
 
   margin: 15px;
   
-  font-family: uniSans;
+  font-family: jost;
   font-size: 18px;
   font-weight: 900;
   text-align: center;
@@ -103,7 +109,7 @@ input:focus::placeholder {
   margin-bottom: 10vh;
   margin-left: calc(50vw - 150px);
 
-  font-family: uniSans;
+  font-family: jost;
   text-align: center;
   justify-content: center;
 }
