@@ -1,8 +1,13 @@
+@font-face {
+  font-family: uniSans;
+  src: url(fonts/Uni\ Sans\ Thin.otf);
+}
+
 body {
   margin: 0;
-  color: #fff;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  background-image: linear-gradient(to bottom right, #75aaff, #dcf09c);
+  color: #E8E5DA;
+  font-family: uniSans;
+  background-color: #000;
 }
 
 .content {
@@ -16,35 +21,89 @@ body {
 
 .content h1 {
   font-size: 3.6rem;
-  font-weight: 750;
+  font-weight: 900;
 }
 
 .content p {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   font-weight: 400;
   opacity: 0.8;
-}
-
-img {
-    max-width: 100%;
-    max-height: 100%;
 }
 
 .link_btn {
   height: 125px;
   width: 125px;
   font-size: 20px;
-  margin: 20px;
+  margin: 10px;
   border: 0px;
 }
 
 .link_btn#gh {
-  width: 155px;
-  height: 155px;
-  background: url(icons/GitHub.png) no-repeat;
+  width: 75px;
+  height: 75px;
+  background: url(icons/GitHub-light.png);
+  display: inline-block;
+  background-size: contain;
 }
+
 .link_btn#li {
-  width: 155px;
-  height: 155px;
-  background: url(icons/LinkedIn.png) no-repeat;
+  width: 75px;
+  height: 75px;
+  background-image: url(icons/LinkedIn.png);
+  display: inline-block;
+  background-size: contain;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.login_input {
+  width: 90%;
+  height: 30px;
+  
+  border-radius: 30px;
+  
+  margin-top: 15px;
+  
+  font-family: uniSans;
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+  outline: none;
+}
+
+.login_submit {
+  background-color: #A3CEF1;
+  width: 40%;
+  height: 30px;
+  
+  border-color: transparent;
+  border-radius: 15px;
+
+  margin: 15px;
+  
+  font-family: uniSans;
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+  outline: none;
+}
+
+.login_form {
+  background-color: #000;
+  width: 300px;
+  
+  border: 5px;
+  border-style: dotted;
+  border-color: #A3CEF1;
+  border-radius: 20px;
+  
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  margin-left: calc(50vw - 150px);
+
+  font-family: uniSans;
+  text-align: center;
+  justify-content: center;
 }
