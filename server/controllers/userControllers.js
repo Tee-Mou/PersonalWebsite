@@ -8,7 +8,6 @@ const getAllUsers = async (req, res) => {
 
 const getUser = async (req, res) => {
     const { id } = req.params;
-    console.log(id)
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ error: "Request Failed (Invalid ID)" })
     }
@@ -64,7 +63,7 @@ const loginUser = async (req, res) => {
         if (userItem) {
             const result = userItem.pass === pass;
             if (result) {
-                res.status(204);
+                res.status(200).json(userItem);
             } else {
                 res.status(403).json({ error: "Incorrect Password" });
             }    
