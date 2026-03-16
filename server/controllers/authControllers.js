@@ -14,7 +14,7 @@ const login = async (req, res) => {
             return res.status(401).json({ error: "Invalid credentials" });
         }
         const token = jwt.sign(
-            {userID: user._id },
+            {userID: userItem._id },
             process.env.JWT_SECRET,
             { expiresIn: '7d' }
         )
@@ -26,10 +26,7 @@ const login = async (req, res) => {
             maxAge: 7*24*60*60*1000
         });
     
-        res.status(200).json({ 
-            message: "Successfully logged in", 
-            user: userItem.user, 
-            perms: userItem.perms });
+        res.status(200).json({ message: "Successfully logged in" });
     })
 };
 
@@ -40,11 +37,15 @@ const logout = async (req, res) => {
 
 const me = async (req, res) => {
     try {
-        userItem = await User.findOne(req.user).select('-pass');
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-        res.json(user);
+        const token = req.cookies.token
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => { 
+            const id = decoded.userID
+            userItem = await User.findOne({_id: id}).select('-pass');
+            if (!userItem) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+            res.json(userItem);
+        });
     }
     catch {
         res.status(500).json({ error: 'Server error' });
