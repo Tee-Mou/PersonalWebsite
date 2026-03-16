@@ -10,7 +10,6 @@ const login = async (req, res) => {
     }
     bcrypt.compare(pass, userItem.pass)
     .then((validPassword) => {
-        console.log(validPassword)
         if (!validPassword) {
             return res.status(401).json({ error: "Invalid credentials" });
         }
@@ -40,10 +39,20 @@ const logout = async (req, res) => {
 }
 
 const me = async (req, res) => {
-    res.send(200)
+    try {
+        userItem = await User.findOne(req.user).select('-pass');
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        res.json(user);
+    }
+    catch {
+        res.status(500).json({ error: 'Server error' });
+    }
 }
 
 module.exports = {
     login,
     logout,
+    me,
 }
