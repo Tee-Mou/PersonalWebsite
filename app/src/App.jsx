@@ -1,32 +1,17 @@
-import { useSelector } from 'react-redux'
-import LoginForm from './utils/Login';
-import { selectUser, selectUserPerms } from './actions/loginSlice';
-import "./App.css"
+import React from "react";
+import { BrowserRouter as Router, Routes } from "react-router-dom"
+import { Route } from "react-router-dom"
+import { Routes } from "react-router-dom"
 
-const idLinkMap = {
-  "gh": "https://github.com/Tee-Mou",
-  "li": "https://linkedin.com/in/tennyson-morris"
-}
+const Landing = React.lazy(() => import("./pages/landing/landing"));
 
-function PersonalLink({id}) {
+export const App = () => {
   return (
-    <a className='link_btn' id={id} href={idLinkMap[id]}/>
-  );
-}
-
-const App = () => {
-  return (
-    <div className="content">
-      <LoginForm/>
-      <p>Check out what I've been doing:</p>
-      <div className="links_row1">
-        <PersonalLink 
-        id="gh"/>
-        <PersonalLink 
-        id="li"/>
-      </div>
-      
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" Component={Landing}/>
+      </Routes>
+    </Router>
   );
 };
 

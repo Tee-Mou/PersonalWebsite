@@ -4,15 +4,14 @@ const {
     getUser,
     createUser,
     deleteUser,
-    loginUser,
 } = require("../controllers/userControllers");
+const { authSession } = require("../helpers/authSession");
 
 const router = express.Router();
 
-router.get("/", getAllUsers);
-router.get("/:id", getUser);
-router.post("/", createUser);
-router.delete("/:id", deleteUser);
-router.post("/login", loginUser);
+router.get("/", authSession, getAllUsers);
+router.get("/:id", authSession, getUser);
+router.post("/", authSession, createUser);
+router.delete("/:id", authSession, deleteUser);
 
 module.exports = router;

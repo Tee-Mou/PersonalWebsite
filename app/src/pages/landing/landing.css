@@ -1,11 +1,11 @@
 @font-face {
   font-family: uniSans;
-  src: url(fonts/Uni\ Sans\ Thin.otf);
+  src: url(../../assets/fonts/Uni\ Sans\ Thin.otf);
 }
 
 @font-face {
   font-family: jost;
-  src: url(fonts/Jost-Regular.ttf);
+  src: url(../../assets/fonts/Jost-Regular.ttf);
 }
 
 
@@ -47,7 +47,7 @@ body {
 .link_btn#gh {
   width: 75px;
   height: 75px;
-  background: url(icons/GitHub-light.png);
+  background: url(../../assets/icons/GitHub-light.png);
   display: inline-block;
   background-size: contain;
 }
@@ -55,7 +55,7 @@ body {
 .link_btn#li {
   width: 75px;
   height: 75px;
-  background-image: url(icons/LinkedIn.png);
+  background-image: url(../../assets/icons/LinkedIn.png);
   display: inline-block;
   background-size: contain;
 }

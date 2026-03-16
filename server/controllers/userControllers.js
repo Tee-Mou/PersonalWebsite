@@ -53,33 +53,11 @@ const deleteUser = async (req, res) => {
     res.status(200).json(user);
 };
 
-const loginUser = async (req, res) => {
-    const {
-        user,
-        pass
-    } = req.body;
-    try {
-        const userItem = await User.findOne({user: user})
-        if (userItem) {
-            const result = userItem.pass === pass;
-            if (result) {
-                res.status(200).json(userItem);
-            } else {
-                res.status(403).json({ error: "Incorrect Password" });
-            }    
-        } else {
-            res.status(404).json({ error: "User doesn't exist" });
-        }
-    }
-    catch (error) {
-        res.status(400).json(error);
-    }
-}
+
 
 module.exports = {
     getAllUsers,
     getUser,
     createUser,
     deleteUser,
-    loginUser,
 };

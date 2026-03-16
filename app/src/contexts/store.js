@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./actions/loginSlice";
+import userReducer from "./loginSlice"
 
 export default configureStore({
     reducer: {
