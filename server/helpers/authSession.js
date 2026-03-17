@@ -25,7 +25,13 @@ const authAdminSession = (req, res, next) => {
         jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
             if (err) throw err;
             const id = decoded.userID
-            userItem = await User.findOne({_id: id, perms: "admin"}).select('-pass');
+            userItem = await User.findOne({
+                $or: [
+                    {_id: id, perms: "admin"},
+                    {_id: id, perms: "owner"}
+                ]
+            }).select('-pass');
+
             if (!userItem) {
                 return res.status(404).json({ error: 'Admin user not found' });
             }

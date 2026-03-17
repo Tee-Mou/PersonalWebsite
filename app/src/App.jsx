@@ -39,7 +39,7 @@ export const App = () => {
           <Route path="/" element={<Home/>}/>
           <Route path="/dashboard" element={
             perms !== "none"
-            ? <Navigate to={`/dashboard/${perms}`}/>
+            ? <Navigate to={`/dashboard/${perms === "member" ? "member" : "admin"}`}/>
             : <Navigate to="/"/>
           }/>
           <Route path="/dashboard/admin" element={

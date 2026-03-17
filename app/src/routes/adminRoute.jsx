@@ -6,7 +6,7 @@ export const AdminRoute = ({ children }) => {
     var perms = "none";
     if (loading) return <div className="loading">Loading...</div>;
     if (currentUser) perms = currentUser.perms;
-    return currentUser?.perms === "admin" ? children : <Navigate to="/" />;
+    return (currentUser.perms === "admin" || currentUser.perms === "owner") ? children : <Navigate to="/" />;
 }
 
 export default AdminRoute;
