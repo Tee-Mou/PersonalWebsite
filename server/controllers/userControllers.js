@@ -8,14 +8,22 @@ const getAllUsers = async (req, res) => {
 
 const getUser = async (req, res) => {
     const { id } = req.params;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ error: "Request Failed (Invalid ID)" })
+    var userItem;
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            console.log(id)
+            userItem = await User.findOne({ user: id }).select('-pass');
+        } else {
+            userItem = await User.findById(id).select('-pass');
+        }
     }
-    const user = await User.findById(id);
-    if (!user) {
+    catch {
+        return res.status(400).json({ error: "Invalid ID/Username" });
+    }
+    if (!userItem) {
         return res.status(404).json({ error: "User doesn't exist" });
-    }
-    res.status(200).json(user);
+    }   
+    res.status(200).json(userItem);
 };
 
 const deleteUser = async (req, res) => {
