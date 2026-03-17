@@ -48,7 +48,7 @@ const register = async (req, res) => {
             const newUser = await User.create({
                 user: user,
                 pass: hashPass,
-                perms: "member"
+                perms: 1,
             })
             .then( res.status(201).json({ message: `Successfully registered ${user}` }) );
         

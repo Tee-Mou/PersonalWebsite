@@ -18,7 +18,7 @@ body {
 
 .footer {
   display: flex;
-  height: 200px;
+  height: 10vh;
   line-height: 1.1;
   text-align: center;
   flex-direction: column;

@@ -16,7 +16,7 @@ import ProtectedRoute from "./routes/protectedRoute";
 import AdminRoute from "./routes/adminRoute";
 
 export const App = () => {
-  var perms = "none";
+  var perms = 0;
   const { currentUser, loading, err } = useSelector((state) => state.user)
   const dispatch = useDispatch();
   
@@ -31,15 +31,15 @@ export const App = () => {
       <div className="content">
         <Routes>
           <Route path="/login" element={
-            perms === "none"
+            perms === 0
             ? <Login/>
             : <Navigate to="/"/>
           }/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/" element={<Home/>}/>
           <Route path="/dashboard" element={
-            perms !== "none"
-            ? <Navigate to={`/dashboard/${perms === "member" ? "member" : "admin"}`}/>
+            perms !== 0
+            ? <Navigate to={`/dashboard/${perms === 1 ? "member" : "admin"}`}/>
             : <Navigate to="/"/>
           }/>
           <Route path="/dashboard/admin" element={
