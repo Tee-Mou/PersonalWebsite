@@ -18,29 +18,6 @@ const getUser = async (req, res) => {
     res.status(200).json(user);
 };
 
-const createUser = async (req, res) => {
-    const {
-        user,
-        pass,
-        perms
-    } = req.body;
-    try {
-        const existingUser = await User.find({user: user})
-        if (existingUser) {
-            res.status(400).json({ error: "User already exists" })
-        }
-        const newUser = await User.create({
-            user,
-            pass,
-            perms
-        });
-        res.status(201).json(newUser);
-    }
-    catch (error) {
-        res.status(400).json(error);
-    }
-};
-
 const deleteUser = async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -58,6 +35,5 @@ const deleteUser = async (req, res) => {
 module.exports = {
     getAllUsers,
     getUser,
-    createUser,
     deleteUser,
 };

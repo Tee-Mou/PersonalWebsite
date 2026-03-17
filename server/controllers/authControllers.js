@@ -35,6 +35,30 @@ const logout = async (req, res) => {
     res.json({ message: "Successfully logged out"})
 }
 
+const register = async (req, res) => {
+    const { user, pass } = req.body;
+    const userItem = await User.findOne({ user });
+    if (userItem) {
+        return res.status(409).json({ error: "User already exists" });
+    }
+    try {
+        bcrypt.hash(pass, 12, async (err, hashPass) => {
+            if (err) throw err
+            console.log(hashPass)
+            const newUser = await User.create({
+                user: user,
+                pass: hashPass,
+                perms: "member"
+            })
+            .then( res.status(201).json({ message: `Successfully registered ${user}` }) );
+        
+        })
+    }
+    catch (err) {
+        res.status(500).json({ error: err });
+    }
+}
+
 const me = async (req, res) => {
     try {
         const token = req.cookies.token
@@ -55,5 +79,6 @@ const me = async (req, res) => {
 module.exports = {
     login,
     logout,
+    register,
     me,
 }
