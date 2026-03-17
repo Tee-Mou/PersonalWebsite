@@ -4,12 +4,12 @@ const {
     getUser,
     deleteUser,
 } = require("../controllers/userControllers");
-const { authSession } = require("../helpers/authSession");
+const { authAdminSession } = require("../helpers/authSession");
 
 const router = express.Router();
 
-router.get("/", authSession, getAllUsers);
-router.get("/:id", authSession, getUser);
-router.delete("/:id", authSession, deleteUser);
+router.get("/", authAdminSession, getAllUsers);
+router.get("/:id", authAdminSession, getUser);
+router.delete("/:id", authAdminSession, deleteUser);
 
 module.exports = router;

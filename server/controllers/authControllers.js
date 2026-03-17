@@ -63,6 +63,7 @@ const me = async (req, res) => {
     try {
         const token = req.cookies.token
         jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => { 
+            if (err) throw err;
             const id = decoded.userID
             userItem = await User.findOne({_id: id}).select('-pass');
             if (!userItem) {
