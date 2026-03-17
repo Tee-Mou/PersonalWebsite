@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
 
 export const loginUser = createAsyncThunk(
     "user/login",
@@ -12,7 +12,7 @@ export const loginUser = createAsyncThunk(
             body: JSON.stringify(creds)
         };
         try {
-            await fetch(urlLogin, options)
+            await fetch(urlLogin, options);
             const res = await fetch(urlAuth, { credentials: 'include' });
             if (!res.ok) return null;
             return await res.json();
@@ -20,6 +20,24 @@ export const loginUser = createAsyncThunk(
         catch (err) {
             return rejectWithValue(err.message);
         }
+    }
+)
+
+export const logOutUser = createAsyncThunk(
+    "user/logout",
+    async (_, { rejectWithValue }) => {
+        const urlLogout = `api/auth/logout`
+        const options = { 
+            method: 'POST',
+            credentials: 'include'
+        };
+        try {
+            const res = await fetch(urlLogout, options);
+            return res.json()
+        }
+        catch (err) {
+            return rejectWithValue(err.message)
+        };
     }
 )
 
@@ -70,6 +88,26 @@ export const userSlice = createSlice({
             .addCase(
                 loginUser.rejected, (state, action) => {
                     state.currentUser = null;
+                    state.err = action.payload
+                    state.loading = false;
+                }
+            )
+            .addCase(
+                logOutUser.pending, (state) => {
+                    console.log("Attempting to log out...")
+                    state.loading = true;
+                    state.err = null;
+            })
+            .addCase(
+                logOutUser.fulfilled, (state, action) => {
+                    console.log("accepted");
+                    state.currentUser = null;
+                    state.loading = false;
+                }
+            )
+            .addCase(
+                logOutUser.rejected, (state, action) => {
+                    console.log("rejected: ", action.payload);
                     state.err = action.payload
                     state.loading = false;
                 }

@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logOutUser } from "../../contexts/userSlice";
+
 import "./home.css"
 
 export const Home = () => {
     const { currentUser, loading, err } = useSelector((state) => state.user)
+    const dispatch = useDispatch()
+
     const logout = () => {
-        return null;
+        dispatch(logOutUser());
     }
     if (currentUser) return (
         <div className="content">
