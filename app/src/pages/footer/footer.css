@@ -16,9 +16,9 @@ body {
   background-color: #000;
 }
 
-.content {
+.footer {
   display: flex;
-  min-height: 100vh;
+  height: 200px;
   line-height: 1.1;
   text-align: center;
   flex-direction: column;

@@ -11,7 +11,9 @@ body {
 }
 
 .content {
-  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: calc(90vh);
   line-height: 1.1;
   text-align: center;
   justify-content: center;

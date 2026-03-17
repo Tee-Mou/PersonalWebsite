@@ -43,7 +43,7 @@ input:focus::placeholder {
   border-color: #A3CEF1;
   border-radius: 10px;
   
-  margin-top: 10vh;
+  margin-top: 5vh;
   margin-bottom: 10vh;
   margin-left: calc(50vw - 150px);
 

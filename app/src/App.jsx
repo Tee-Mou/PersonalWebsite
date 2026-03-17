@@ -28,46 +28,33 @@ export const App = () => {
   if (loading) return <div>Loading...</div>;
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={
-          perms === "none"
-          ?
-          <div>
-            <Login/>
-            <Footer/>
-          </div>
-          : <Navigate to="/"/>
-        }/>
-        <Route path="/register" element={
-          <div>
-            <Register/>
-            <Footer/>
-          </div>
-        }/>
-        <Route path="/" element={
-          <div>
-            <Home/>
-            <Footer/>
-          </div>
-        }/>
-        <Route path="/dashboard" element={
-          perms !== "none"
-          ? <Navigate to={`/dashboard/${perms}`}/>
-          : <Navigate to="/"/>
-        }/>
-        <Route path="/dashboard/admin" element={
-            <AdminRoute>
-                <AdminDash/>
-                <Footer/>
-            </AdminRoute>
-        }/>
-        <Route path="/dashboard/member" element={
-            <ProtectedRoute>
-                <MemberDash/>
-                <Footer/>
-            </ProtectedRoute>
-        }/>
-      </Routes>
+      <div className="content">
+        <Routes>
+          <Route path="/login" element={
+            perms === "none"
+            ? <Login/>
+            : <Navigate to="/"/>
+          }/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/dashboard" element={
+            perms !== "none"
+            ? <Navigate to={`/dashboard/${perms}`}/>
+            : <Navigate to="/"/>
+          }/>
+          <Route path="/dashboard/admin" element={
+              <AdminRoute>
+                  <AdminDash/>
+              </AdminRoute>
+          }/>
+          <Route path="/dashboard/member" element={
+              <ProtectedRoute>
+                  <MemberDash/>
+              </ProtectedRoute>
+          }/>
+        </Routes>
+        <Footer/>
+      </div>
     </BrowserRouter>
   );
 };

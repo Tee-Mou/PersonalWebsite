@@ -11,7 +11,7 @@ const PersonalLink = ({id}) => (
 
 export const Footer = () => {
     return (
-        <div className="content">
+        <div className="footer">
             <p>Check out what I've been doing:</p>
             <div className="links_row1">
                 <PersonalLink id="gh"/>

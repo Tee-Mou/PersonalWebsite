@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import "../login/login"
+import "./register.css"
 
 export const Register = () => {
     const dispatch = useDispatch();
