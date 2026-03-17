@@ -1,7 +1,7 @@
 
 export const MemberDashboard = () => {
     return (
-        <div>
+        <div className="content">
             <h1> Member Dashboard </h1>
         </div>
     )
