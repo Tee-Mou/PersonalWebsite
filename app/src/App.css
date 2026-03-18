@@ -1,31 +1,42 @@
 @font-face {
-  font-family: jost;
-  src: url(./assets/fonts/Jost-Regular.ttf);
+    font-family: jost;
+    src: url('./assets/fonts/Jost-Regular.ttf');
 }
 
-body {
-  margin: 0;
-  color: #E8E5DA;
-  font-family: jost;
-  background-color: #000;
+html, body, #root, #root>div {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+
+    margin: 0px;
+    padding: 0px;
+
+
+    font-family: jost;
+    color: #E8E5DA;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  height: calc(90vh);
-  line-height: 1.1;
-  text-align: center;
-  justify-content: center;
+.screen-container {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex: row;
 }
 
-.content h1 {
-  font-size: 3.6rem;
-  font-weight: 900;
+.content-container {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
 }
 
-.content p {
-  font-size: 1.8rem;
-  font-weight: 400;
-  opacity: 0.8;
+.route-container {
+    height: 80%;
+    width: 100%;
+
+    display: flex;
+    float: column;
 }

@@ -1,4 +1,5 @@
-import "./footer.css";
+import "./footer.css"
+
 
 const idLinkMap = {
     "gh": "https://github.com/Tee-Mou",
@@ -6,14 +7,14 @@ const idLinkMap = {
 }
 
 const PersonalLink = ({id}) => (
-    <a className='link_btn' id={id} href={idLinkMap[id]}/>
+    <a className='link-btn' id={id} href={idLinkMap[id]}/>
 );
 
 export const Footer = () => {
     return (
-        <div className="footer">
+        <div className='footer'>
             <p>Check out what I've been doing:</p>
-            <div className="links_row1">
+            <div className="links">
                 <PersonalLink id="gh"/>
                 <PersonalLink id="li"/>
             </div>

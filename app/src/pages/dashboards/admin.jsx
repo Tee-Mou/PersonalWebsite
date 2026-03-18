@@ -1,19 +1,33 @@
 import { useState } from "react"
+
 import "./dashboard.css"
 
 const UserInfoWindow = ({ userItem }) => {
     if (userItem) { 
         return (
-            <div className="userInfoWindow">
-                <p>User ID: {userItem._id}</p>
-                <p>Username: {userItem.user}</p>
-                <p>Permission Level: {userItem.perms}</p>
+            <div className="user-info-window">
+                <table className="user-table">
+                    <tbody>
+                        <tr>
+                            <th scope="row" align="right">User ID:</th>
+                            <td>{userItem._id}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" align="right">Name:</th>
+                            <td>{userItem.user}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" align="right">Level:</th>
+                            <td>{userItem.perms}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         )
     } else {
         return (
             
-            <div className="userInfoWindow">
+            <div className="user-info-window">
                 <p>No User Selected</p>
             </div>
         )
@@ -45,8 +59,8 @@ const UserWindow = () => {
     }
     
     return (
-        <div className="userManager">
-            <form className="inputWithSearch" onSubmit={(event) => {
+        <div className="user-manager">
+            <form className="input-with-search" onSubmit={(event) => {
                 event.preventDefault();
                 if (!event.target.searchUser.value) {
                     setUserItem(null);
@@ -63,19 +77,18 @@ const UserWindow = () => {
                     setUserItem(data)});
                     return;
             }}>
-                <input className="userSearchInput" name="searchUser" type="text" placeholder="Id/Username" autoComplete="off"/>
-                <input className="userSearchSubmit" type="button"/>
+                <input className="search-input" name="searchUser" type="text" placeholder="Id/Username" autoComplete="off"/>
+                <input className="search-submit" type="button"/>
             </form>
-            <h2> Manage User </h2>
             <UserInfoWindow userItem={userItem}/>
-            <div className="userManagerButtons">
-                <button className="adminButton" onClick={deleteUser}>
+            <div className="manager-buttons">
+                <button className="admin-button" onClick={deleteUser}>
                     Delete User
                 </button>
-                <button className="adminButton" onClick={updateUser}>
+                <button className="admin-button" onClick={updateUser}>
                     Change Permissions
                 </button>
-                <button className="adminButton" onClick={deselectUser}>
+                <button className="admin-button" onClick={deselectUser}>
                     Deselect User
                 </button>
             </div>
@@ -85,7 +98,7 @@ const UserWindow = () => {
 
 export const AdminDashboard = () => {
     return (
-        <div className="content">
+        <div className="dashboard-page">
             <h1> Admin Dashboard </h1>
             <div className="Dashboard">
                 <UserWindow/>

@@ -1,7 +1,8 @@
+import "./dashboard.css"
 
 export const MemberDashboard = () => {
     return (
-        <div className="content">
+        <div className="dashboard-page">
             <h1> Member Dashboard </h1>
         </div>
     )

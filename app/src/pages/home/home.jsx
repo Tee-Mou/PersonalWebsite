@@ -12,21 +12,23 @@ export const Home = () => {
         dispatch(logOutUser());
     }
     if (currentUser) return (
-        <div className="content">
-            <Link className="SPA_link" id="dash_link" to="/dashboard">
+        <div className="home-page">
+            <h1> Hey, {currentUser.user}! </h1>
+            <Link className="SPA-link" id="dash-link" to="/dashboard">
             Go to Dashboard
             </Link>
-            <Link className="SPA_link" id="dash_link" to="/" onMouseDown={logout}>
+            <Link className="SPA-link" id="logout-link" to="/" onMouseDown={logout}>
                 Logout
             </Link>
         </div>
     )
     return (
-        <div className="content">
-            <Link className="SPA_link" id="dash_link" to="/login">
+        <div className="home-page">
+            <h1> Welcome! </h1>
+            <Link className="SPA-link" id="login-link" to="/login">
                 Login
             </Link>
-            <Link className="SPA_link" id="dash_link" to="/register" title="Register">
+            <Link className="SPA-link" id="register-link" to="/register" title="Register">
                 Register
             </Link>
         </div>
