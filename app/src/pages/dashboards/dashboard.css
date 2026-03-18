@@ -23,7 +23,7 @@
 }
 
 .input-with-search {
-    margin: 30px;
+    margin-top: 30px;
     height: 10%;
     width: 200px;
 
@@ -44,6 +44,7 @@ input:focus::placeholder {
     width: 170px;
 
     border: none;
+    outline: none;
 
     font-family: jost;
     text-align: center;
@@ -63,6 +64,7 @@ input:focus::placeholder {
 }
 
 .user-table {
+    margin-top: 30px;
     align-items: right;
 }
 
@@ -71,6 +73,7 @@ input:focus::placeholder {
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    margin-top: 30px;
 }
 
 .admin-button {

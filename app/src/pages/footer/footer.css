@@ -23,11 +23,12 @@
 
 .link-btn#gh {
     display: inline-block;
-    background-size: contain;    background-image: url("../../assets/icons/GitHub-light.png");
+    background-size: cover;
+    background-image: url("../../assets/icons/GitHub-light.png");
 }
 
 .link-btn#li {
     display: inline-block;
-    background-size: contain;
+    background-size: cover;
     background-image: url("../../assets/icons/LinkedIn.png");
 }
