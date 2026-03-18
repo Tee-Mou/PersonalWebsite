@@ -52,7 +52,7 @@ const UserWindow = () => {
                     setUserItem(null);
                     return;
                 }
-                fetch(`/api/users/${event.target.searchUser.value}`)
+                fetch(`/api/users/one/${event.target.searchUser.value}`)
                 .then((res) => res.ok? res.json() : null)
                 .then(data => {
                     console.log(data)
