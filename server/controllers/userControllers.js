@@ -13,7 +13,6 @@ const getUser = async (req, res) => {
     var userItem;
     try {
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            console.log(id)
             userItem = await User.findOne({ user: id }).select('-pass');
         } else {
             userItem = await User.findById(id).select('-pass');
@@ -44,7 +43,6 @@ const deleteUser = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ error: "Request Failed (Invalid ID)" })
     }
-    console.log(`Req User Perms: ${reqUserPerms}`)
     const user = await User.findOneAndDelete({ _id: id, perms: { $lt: reqUserPerms } });
     if (!user) {
         return res.status(404).json({ error: "User doesn't exist" });

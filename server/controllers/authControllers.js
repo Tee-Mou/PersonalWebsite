@@ -44,7 +44,6 @@ const register = async (req, res) => {
     try {
         bcrypt.hash(pass, 12, async (err, hashPass) => {
             if (err) throw err
-            console.log(hashPass)
             const newUser = await User.create({
                 user: user,
                 pass: hashPass,

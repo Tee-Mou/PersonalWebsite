@@ -40,7 +40,6 @@ const UserWindow = () => {
 
     const deleteUser = async () => {
         if (!userItem) return;
-        console.log(userItem._id)
         const urlDelete = `/api/users/${userItem._id}`;
         const options = {
             method: 'DELETE',
@@ -51,6 +50,7 @@ const UserWindow = () => {
     }
 
     const updateUser = () => {
+        
         return
     }
 
@@ -69,7 +69,6 @@ const UserWindow = () => {
                 fetch(`/api/users/one/${event.target.searchUser.value}`)
                 .then((res) => res.ok? res.json() : null)
                 .then(data => {
-                    console.log(data)
                     if (!data || data.error) {
                         setUserItem(null);
                         return;
