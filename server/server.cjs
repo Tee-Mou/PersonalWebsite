@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const authRoutes = require("./routes/auth.cjs");
 const userRoutes = require("./routes/users.cjs");
-const galleryRoutes = require("./routes/gallery.cjs");
+const pokerRoutes = require("./routes/poker.cjs");
 
 const port = process.env.PORT || 5050;
 
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/gallery", galleryRoutes);
+app.use("/api/poker", pokerRoutes);
 
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
