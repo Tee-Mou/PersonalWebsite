@@ -33,10 +33,10 @@ const deleteUser = async (req, res) => {
     var reqUserPerms;
     await jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => { 
         if (err) throw err;
-        const id = decoded.userID
-        userItem = await User.findOne({_id: id}).select('-pass');
+        const reqId = decoded.userID
+        userItem = await User.findOne({_id: reqId}).select('-pass');
         if (!userItem) {
-            return res.status(404).json({ error: 'User not found' });
+            return res.status(404).json({ error: "User doesn't exist" });
         }
         reqUserPerms = userItem.perms;
     });
@@ -50,10 +50,42 @@ const deleteUser = async (req, res) => {
     res.status(200).json(user);
 };
 
+const updateCredentials = async (req, res) => {
+    const { newUser, newPass } = req.body
+    const token = req.cookies.token;
+    try {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+            const id = decoded.userID
+            if (newUser) {
+                userExists = await User.findOne({ user: newUser })
+                if (userExists) {
+                    return res.status(409).json({ error: "User already exists "})
+                }
+                await User.findOneAndUpdate({ _id: id }, { user: newUser })
+                .then(() => {
+                    return res.status(200).json({ message: "Sucessfully changed username" })
+                })
+
+            }
+            if (newPass) {
+                bcrypt.hash(newPass, 12, async (err, hashPass) => {
+                    await User.findOneAndUpdate({ _id: id }, { pass: hashPass })
+                    .then(() => {
+                        return res.status(200).json({ message: "Successfully changed password" })
+                })
+                })
+            }
+        });
+    }
+    catch (err) {
+        return res.status(500).json({ error: err.message })
+    }
+}
 
 
 module.exports = {
     getAllUsers,
     getUser,
     deleteUser,
+    updateCredentials,
 };
