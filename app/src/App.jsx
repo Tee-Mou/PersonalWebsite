@@ -13,6 +13,7 @@ const Footer = React.lazy(() => import("./pages/footer/footer"));
 const Sidebar = React.lazy(() => import("./pages/sidebar/sidebar"));
 const AdminDash = React.lazy(() => import("./pages/dashboards/admin"));
 const MemberDash = React.lazy(() => import("./pages/dashboards/member"));
+const PokerDash = React.lazy(() => import("./pages/poker/poker"));
 import ProtectedRoute from "./routes/protectedRoute";
 import AdminRoute from "./routes/adminRoute";
 
@@ -54,6 +55,11 @@ export const App = () => {
               <Route path="/dashboard/member" element={
                   <ProtectedRoute>
                       <MemberDash/>
+                  </ProtectedRoute>
+              }/>
+              <Route path="/poker" element={
+                  <ProtectedRoute>
+                      <PokerDash/>
                   </ProtectedRoute>
               }/>
             </Routes>

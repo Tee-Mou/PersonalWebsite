@@ -17,6 +17,9 @@ export const Home = () => {
             <Link className="SPA-link" id="dash-link" to="/dashboard">
             Go to Dashboard
             </Link>
+            <Link className="SPA-link" id="poker-link" to="/poker">
+            Poker Sessions
+            </Link>
             <Link className="SPA-link" id="logout-link" to="/" onMouseDown={logout}>
                 Logout
             </Link>
